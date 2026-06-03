@@ -1,6 +1,6 @@
 import React, { ReactNode, useState } from "react";
 import { View, useWindowDimensions } from "react-native";
-import NavBar, { NavItem } from "./NavBar";
+import NavBar, { NavItem } from "../NavBar/NavBar";
 
 export type TabKey =
   | "home"
