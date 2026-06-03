@@ -1,0 +1,16 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: quizz_backend
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/usr/src/app # Espelha sua pasta atual para dentro do container
+      - /usr/src/app/node_modules # Protege os pacotes internos do container
+    environment:
+      - MONGO_URL=${MONGO_URL}
+    env_file:
+      - .env
+    restart: unless-stopped
