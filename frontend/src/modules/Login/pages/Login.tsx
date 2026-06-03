@@ -72,7 +72,7 @@ export default function Login() {
         <View className="mt-4">
           <Button
             title="Entrar"
-            onPress={() => console.log("Login", { email, password })}
+            onPress={() => navigation.navigate('Home')}
           />
         </View>
 
