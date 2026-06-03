@@ -70,10 +70,7 @@ export default function Login() {
 
         {/* Submit Button */}
         <View className="mt-4">
-          <Button
-            title="Entrar"
-            onPress={() => navigation.navigate('Home')}
-          />
+          <Button title="Entrar" onPress={() => navigation.navigate("Home")} />
         </View>
 
         <View className="flex-row items-center justify-center mt-8 pb-8">
