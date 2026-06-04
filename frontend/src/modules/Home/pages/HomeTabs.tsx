@@ -1,70 +1,48 @@
 import React from "react";
-import { View, Text, ScrollView } from "react-native";
-import ResponsiveLayout from "../../../common/components/layout/ResponsiveLayout";
+import { View, Text } from "react-native";
+import ResponsiveLayout, {
+  TabKey,
+} from "../../../common/components/layout/ResponsiveLayout";
+import Begin from "../../Begin/pages/Begin"; // Importe a sua página Begin limpa
+import Simulators from "../../Simulator/pages/Simulator";
 
 export default function HomeTabs() {
   return (
     <ResponsiveLayout>
-      {(active) => {
+      {(active: TabKey) => {
+        // O ResponsiveLayout passa o "active" atual aqui para dentro
         switch (active) {
           case "home":
-            return (
-              <ScrollView
-                contentContainerStyle={{ padding: 16 }}
-                className="bg-transparent"
-              >
-                <Text className="text-white text-2xl font-bold mb-2">
-                  Início
-                </Text>
-                <Text className="text-white/80 mb-3">
-                  Aqui ficam os tópicos e atalhos principais conforme o mockup.
-                </Text>
-                <View className="bg-[#0B1116] p-3 rounded-lg">
-                  <Text className="text-white font-semibold mb-1">
-                    Tópico de exemplo
-                  </Text>
-                  <Text className="text-white/70">
-                    Descrição breve do tópico e ação.
-                  </Text>
-                </View>
-              </ScrollView>
-            );
+            return <Begin />; // ➔ O botão "Início" renderiza o seu Begin diretamente!
+
           case "simulados":
-            return (
-              <View className="flex-1 items-center justify-center">
-                <Text className="text-white text-2xl font-bold">Simulados</Text>
-                <Text className="text-white/80">Placeholder de Simulados</Text>
-              </View>
-            );
+            return <Simulators/>
+
           case "desempenho":
             return (
-              <View className="flex-1 items-center justify-center">
-                <Text className="text-white text-2xl font-bold">
-                  Desempenho
-                </Text>
-                <Text className="text-white/80">Placeholder de Desempenho</Text>
+              <View className="p-4">
+                <Text className="text-white">Tela de Desempenho</Text>
               </View>
             );
+
           case "ranking":
             return (
-              <View className="flex-1 items-center justify-center">
-                <Text className="text-white text-2xl font-bold">Ranking</Text>
-                <Text className="text-white/80">Placeholder de Ranking</Text>
+              <View className="p-4">
+                <Text className="text-white">Tela de Ranking</Text>
               </View>
             );
+
           case "ajustes":
             return (
-              <View className="flex-1 items-center justify-center">
-                <Text className="text-white text-2xl font-bold">Ajustes</Text>
-                <Text className="text-white/80">Placeholder de Ajustes</Text>
+              <View className="p-4">
+                <Text className="text-white">Tela de Ajustes</Text>
               </View>
             );
+
           default:
-            return null;
+            return <Begin />;
         }
       }}
     </ResponsiveLayout>
   );
 }
-
-// layout and styles use nativewind className
