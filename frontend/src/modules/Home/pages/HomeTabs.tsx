@@ -5,25 +5,21 @@ import ResponsiveLayout, {
 } from "../../../common/components/layout/ResponsiveLayout";
 import Begin from "../../Begin/pages/Begin"; // Importe a sua página Begin limpa
 import Simulators from "../../Simulator/pages/Simulator";
+import { Perfomance } from "../../Perfomance/Pages/Perfomance";
 
 export default function HomeTabs() {
   return (
     <ResponsiveLayout>
       {(active: TabKey) => {
-        // O ResponsiveLayout passa o "active" atual aqui para dentro
         switch (active) {
           case "home":
-            return <Begin />; // ➔ O botão "Início" renderiza o seu Begin diretamente!
+            return <Begin />; 
 
           case "simulados":
-            return <Simulators/>
+            return <Simulators />;
 
           case "desempenho":
-            return (
-              <View className="p-4">
-                <Text className="text-white">Tela de Desempenho</Text>
-              </View>
-            );
+            return <Perfomance />;
 
           case "ranking":
             return (
