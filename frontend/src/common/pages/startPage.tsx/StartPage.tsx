@@ -15,24 +15,23 @@ import { useNavigation } from "@react-navigation/native";
 /* ─── Feature card data ───────────────────────────────────── */
 const features = [
   {
-    emoji: "☁️",
+    icon: "cloud-outline", // Substitui o ☁️
     title: "5 domínios CLF-C02",
     description:
       "Conceitos de nuvem, segurança, tecnologia, faturamento e infraestrutura global.",
   },
   {
-    emoji: "⚡",
+    icon: "flash-outline", // Substitui o ⚡
     title: "Explicação imediata",
     description:
       "Veja por que cada alternativa está certa logo após responder.",
   },
   {
-    emoji: "📊",
+    icon: "stats-chart-outline", // Substitui o 📊
     title: "Acompanhe sua melhor nota",
     description: "Histórico salvo por tópico para identificar o que estudar.",
   },
 ];
-
 /* ─── Login Page ──────────────────────────────────────────── */
 export default function StartPage() {
   const { width } = useWindowDimensions();
@@ -68,7 +67,10 @@ export default function StartPage() {
             </View>
 
             {/* Entrar link */}
-            <TouchableOpacity activeOpacity={0.7} onPress={() => navigation.navigate("Login")}>
+            <TouchableOpacity
+              activeOpacity={0.7}
+              onPress={() => navigation.navigate("Login")}
+            >
               <Text className="text-sm font-semibold text-white/80">
                 Entrar
               </Text>
@@ -105,12 +107,11 @@ export default function StartPage() {
             onPress={() => navigation.navigate("Login")}
           />
 
-          {/* ── Features section ─────────────────────── */}
           <View className="rounded-3xl border border-white/10 bg-white/[0.03] p-4">
             {features.map((f, i) => (
               <FeatureCard
                 key={i}
-                emoji={f.emoji}
+                icon={f.icon as any} // Passamos o icon aqui! O 'as any' previne erros chatos de tipagem do TS
                 title={f.title}
                 description={f.description}
               />
