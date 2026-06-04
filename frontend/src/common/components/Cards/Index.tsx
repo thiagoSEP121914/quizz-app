@@ -1,20 +1,29 @@
-import { View, Text } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
+import { Ionicons } from "@expo/vector-icons"; // Importando a lib
 
 export interface FeatureCardProps {
-  emoji: string;
+  icon: keyof typeof Ionicons.glyphMap; // Tipagem perfeita que sugere os nomes corretos!
   title: string;
   description: string;
+  onPress?: () => void;
 }
 
 export const FeatureCard = ({
-  emoji,
+  icon,
   title,
   description,
+  onPress,
 }: FeatureCardProps) => {
   return (
-    <View className="flex-row items-start rounded-2xl border border-white/10 bg-white/5 p-4 mb-3">
+    <TouchableOpacity
+      onPress={onPress}
+      disabled={!onPress}
+      activeOpacity={0.7}
+      className="flex-row items-start rounded-2xl border border-white/10 bg-white/5 p-4 mb-3"
+    >
+      {/* Container do Ícone */}
       <View className="mr-4 h-11 w-11 items-center justify-center rounded-full bg-[#FF9900]/15">
-        <Text className="text-lg">{emoji}</Text>
+        <Ionicons name={icon} size={22} color="#FF9900" />
       </View>
 
       <View className="flex-1">
@@ -23,6 +32,6 @@ export const FeatureCard = ({
           {description}
         </Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };

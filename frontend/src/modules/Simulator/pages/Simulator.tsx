@@ -3,32 +3,33 @@ import { View, Text, ScrollView } from "react-native";
 import { FeatureCard } from "../../../common/components/Cards/Index";
 import { ScreenLayout } from "../../../common/components/layout/ScreenLayout";
 
+// Substituímos os emojis pelos nomes exatos da biblioteca Ionicons
 const SIMULATIONS_DATA = [
   {
     id: 1,
     title: "Simulado Completo",
     description: "65 questões · 90 min · pontuação real",
-    emoji: "🥇",
+    icon: "ribbon",
   },
   {
     id: 2,
     title: "Simulado Rápido",
     description: "20 questões aleatórias para revisão",
-    emoji: "⏱️",
+    icon: "timer-outline",
   },
   {
     id: 3,
     title: "Foco em Segurança",
     description: "Apenas questões do domínio 2",
-    emoji: "🛡️",
+    icon: "shield-checkmark-outline",
   },
   {
     id: 4,
     title: "Foco em Serviços",
     description: "EC2, S3, RDS, Lambda e VPC",
-    emoji: "☁️",
+    icon: "cloud-outline",
   },
-];
+] as const; // O 'as const' ajuda o TypeScript a entender que esses nomes não vão mudar
 
 export default function Simulators() {
   return (
@@ -55,7 +56,7 @@ export default function Simulators() {
           key={simulation.id}
           title={simulation.title}
           description={simulation.description}
-          emoji={simulation.emoji}
+          icon={simulation.icon as any} // Passamos o ícone aqui
         />
       ))}
     </ScreenLayout>
