@@ -1,14 +1,20 @@
 import { BadRequestException, Injectable, Inject } from "@nestjs/common";
-import * as bcrypt from "bcrypt";
 import { type IUserRepository } from "../../domain/user.repository";
 import { CreateUserDTO } from "../dtos/requests/create-user.dto";
 import { UserResponseDTO } from "../dtos/responses/user-response.dto";
+import {
+  type IHashService,
+  HASH_SERVICE_TOKEN,
+} from "src/common/domain/interfaces/hash.interface";
 
 @Injectable()
 export class CreateUserUseCase {
   constructor(
-    @Inject("IQuestionRepository")
+    @Inject("IUserRepository")
     private readonly userRepository: IUserRepository,
+
+    @Inject(HASH_SERVICE_TOKEN)
+    private readonly hashService: IHashService,
   ) {}
 
   async execute(data: CreateUserDTO): Promise<UserResponseDTO> {
@@ -17,8 +23,7 @@ export class CreateUserUseCase {
       throw new BadRequestException("Este e-mail já está em uso.");
     }
 
-    const saltRounds = 10;
-    const hashedPassword = await bcrypt.hash(data.password, saltRounds);
+    const hashedPassword = await this.hashService.hash(data.password!);
 
     const userEntity = {
       name: data.name,
@@ -28,7 +33,6 @@ export class CreateUserUseCase {
     };
 
     const savedUser = await this.userRepository.insert(userEntity);
-
     return UserResponseDTO.fromDomain(savedUser);
   }
 }
