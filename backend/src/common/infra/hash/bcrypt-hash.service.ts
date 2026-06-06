@@ -5,7 +5,7 @@ import { env } from "../env/env";
 
 @Injectable()
 export class BcryptHashService implements IHashService {
-  private readonly SALT_ROUNDS = env.SALT_ROUND;
+  private readonly SALT_ROUNDS = env.SALT_ROUNDS;
 
   hash(data: string): Promise<string> {
     return bcrypt.hash(data, this.SALT_ROUNDS);
