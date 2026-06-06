@@ -7,6 +7,7 @@ const envSchema = z.object({
     .default("development"),
   PORT: z.coerce.number().default(8080),
   MONGO_URL: z.string,
+  SALT_ROUND: z.coerce.number(),
 });
 
 const _env = envSchema.safeParse(process.env);
