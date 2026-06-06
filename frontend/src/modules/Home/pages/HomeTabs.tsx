@@ -7,6 +7,7 @@ import Begin from "../../Begin/pages/Begin"; // Importe a sua página Begin limp
 import Simulators from "../../Simulator/pages/Simulator";
 import { Perfomance } from "../../Perfomance/Pages/Perfomance";
 import { Ranking } from "../../Ranking/Pages/RankingPage";
+import { Settings } from "../../config/Page/ConfigPage";
 
 export default function HomeTabs() {
   return (
@@ -26,11 +27,7 @@ export default function HomeTabs() {
             return <Ranking />; // <-- Correção feita aqui: apenas um "<" e sem parênteses extras
 
           case "ajustes":
-            return (
-              <View className="p-4">
-                <Text className="text-white">Tela de Ajustes</Text>
-              </View>
-            );
+            return <Settings />;
 
           default:
             return <Begin />;
